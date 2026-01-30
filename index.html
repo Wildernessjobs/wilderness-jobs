@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wilderness Jobs - Work in Australia's Most Beautiful Places</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Libre+Franklin:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sage: #7a9b76;
+            --forest: #2d4a2b;
+            --sand: #e8dcc4;
+            --clay: #b08968;
+            --ocean: #4a7c7e;
+            --cream: #faf8f3;
+            --charcoal: #2b2b2b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Libre Franklin', sans-serif;
+            color: var(--charcoal);
+            background: var(--cream);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: linear-gradient(to bottom, rgba(250, 248, 243, 0.98), rgba(250, 248, 243, 0));
+            backdrop-filter: blur(10px);
+            animation: slideDown 0.8s ease;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            color: var(--forest);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--charcoal);
+            font-size: 0.95rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--sage);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--ocean) 0%, var(--sage) 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(122, 155, 118, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(74, 124, 126, 0.3) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 1;
+            max-width: 900px;
+            padding: 2rem;
+            animation: fadeInUp 1.2s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 5.5rem;
+            font-weight: 300;
+            color: var(--cream);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        .hero .subtitle {
+            font-size: 1.3rem;
+            color: var(--sand);
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeIn 1s ease 0.5s forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: var(--cream);
+            color: var(--forest);
+            text-decoration: none;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            font-size: 0.9rem;
+            border-radius: 2px;
+            transition: all 0.4s ease;
+            opacity: 0;
+            animation: fadeIn 1s ease 0.8s forwards;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 8rem 4rem;
+            background: var(--cream);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-header h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            font-weight: 400;
+            color: var(--forest);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--clay);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 4px;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            border-top: 3px solid var(--sage);
+        }
+
+        .feature-card:nth-child(2) {
+            border-top-color: var(--ocean);
+        }
+
+        .feature-card:nth-child(3) {
+            border-top-color: var(--clay);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--forest);
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* Destinations Section */
+        .destinations {
+            padding: 8rem 4rem;
+            background: linear-gradient(to bottom, var(--cream), var(--sand));
+        }
+
+        .destinations-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .destination-card {
+            position: relative;
+            height: 500px;
+            border-radius: 4px;
+            overflow: hidden;
+            cursor: pointer;
+            background: var(--ocean);
+        }
+
+        .destination-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.7));
+            z-index: 1;
+            transition: opacity 0.4s ease;
+        }
+
+        .destination-card:hover::before {
+            opacity: 0.9;
+        }
+
+        .destination-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2.5rem;
+            z-index: 2;
+            color: white;
+        }
+
+        .destination-info h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 400;
+        }
+
+        .destination-info p {
+            font-size: 1rem;
+            opacity: 0.9;
+            letter-spacing: 0.5px;
+        }
+
+        /* Reviews Section */
+        .reviews {
+            padding: 8rem 4rem;
+            background: var(--forest);
+            color: var(--cream);
+        }
+
+        .reviews .section-header h2,
+        .reviews .section-header p {
+            color: var(--cream);
+        }
+
+        .review-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .review-card {
+            background: rgba(255,255,255,0.05);
+            padding: 2.5rem;
+            border-radius: 4px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: background 0.3s ease;
+        }
+
+        .review-card:hover {
+            background: rgba(255,255,255,0.08);
+        }
+
+        .stars {
+            color: var(--sand);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .review-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+
+        .reviewer {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        .reviewer strong {
+            opacity: 1;
+            color: var(--sand);
+        }
+
+        /* Job Listings Preview */
+        .jobs-preview {
+            padding: 8rem 4rem;
+            background: white;
+        }
+
+        .job-list {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .job-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem;
+            border-bottom: 1px solid #e0e0e0;
+            transition: background 0.3s ease;
+        }
+
+        .job-item:hover {
+            background: var(--cream);
+        }
+
+        .job-info h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            color: var(--forest);
+            margin-bottom: 0.5rem;
+        }
+
+        .job-meta {
+            display: flex;
+            gap: 2rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .apply-btn {
+            padding: 0.8rem 2rem;
+            background: var(--sage);
+            color: white;
+            text-decoration: none;
+            border-radius: 2px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+
+        .apply-btn:hover {
+            background: var(--forest);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--charcoal);
+            color: var(--sand);
+            padding: 5rem 4rem 3rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-about h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--cream);
+        }
+
+        .footer-links h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--cream);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: var(--sand);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.8rem;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--sage);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(232, 220, 196, 0.2);
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .feature-grid,
+            .review-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .destinations-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1.5rem 2rem;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+                font-size: 0.85rem;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1rem;
+            }
+
+            .features,
+            .destinations,
+            .reviews,
+            .jobs-preview {
+                padding: 4rem 2rem;
+            }
+
+            .section-header h2 {
+                font-size: 2.5rem;
+            }
+
+            .job-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">Wilderness Jobs</div>
+        <ul class="nav-links">
+            <li><a href="#destinations">Destinations</a></li>
+            <li><a href="#jobs">Jobs</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+            <li><a href="#resources">Resources</a></li>
+            <li><a href="#about">About</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Work Where Nature Inspires</h1>
+            <p class="subtitle">DISCOVER REMOTE OPPORTUNITIES IN AUSTRALIA'S MOST BREATHTAKING LOCATIONS</p>
+            <a href="#jobs" class="cta-button">EXPLORE OPPORTUNITIES</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="section-header">
+            <h2>Your Gateway to Wilderness Careers</h2>
+            <p>Everything you need to find and secure your dream job in Australia's remote paradise locations</p>
+        </div>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🏔️</div>
+                <h3>Curated Destinations</h3>
+                <p>Explore luxury lodges, eco-resorts, and remote hospitality venues nestled in Australia's most stunning landscapes. From rainforests to outback, find your perfect workplace paradise.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💼</div>
+                <h3>Live Job Listings</h3>
+                <p>Access exclusive opportunities at premier remote locations. Filter by region, role, and experience level to find positions that match your skills and adventure spirit.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⭐</div>
+                <h3>Honest Reviews</h3>
+                <p>Read authentic experiences from workers who've been there. Our Glassdoor-style review platform gives you the real story about working conditions, management, and life on location.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Destinations Section -->
+    <section class="destinations" id="destinations">
+        <div class="section-header">
+            <h2>Featured Destinations</h2>
+            <p>Luxury lodges and remote resorts where work meets wonder</p>
+        </div>
+        <div class="destinations-grid">
+            <div class="destination-card">
+                <div class="destination-info">
+                    <h3>Daintree Rainforest</h3>
+                    <p>Tropical North Queensland • 12 Active Positions</p>
+                </div>
+            </div>
+            <div class="destination-card">
+                <div class="destination-info">
+                    <h3>Kangaroo Island</h3>
+                    <p>South Australia • 8 Active Positions</p>
+                </div>
+            </div>
+            <div class="destination-card">
+                <div class="destination-info">
+                    <h3>Kimberley Region</h3>
+                    <p>Western Australia • 15 Active Positions</p>
+                </div>
+            </div>
+            <div class="destination-card">
+                <div class="destination-info">
+                    <h3>Great Ocean Road</h3>
+                    <p>Victoria • 6 Active Positions</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="reviews" id="reviews">
+        <div class="section-header">
+            <h2>What Workers Are Saying</h2>
+            <p>Real reviews from people who've lived and worked in remote Australia</p>
+        </div>
+        <div class="review-cards">
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"Six months at a lodge in Tasmania changed my life. The work was challenging but the sunrises over Cradle Mountain made every early shift worth it. Management truly cared about our wellbeing."</p>
+                <p class="reviewer"><strong>Sarah M.</strong> • Front Desk Manager • Cradle Mountain Lodge</p>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"Working in the Outback was the adventure I needed. The team became family, and I learned more about hospitality here than in any city hotel. The isolation taught me resilience."</p>
+                <p class="reviewer"><strong>James T.</strong> • Chef • Uluru Resort</p>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★☆</div>
+                <p class="review-text">"Beautiful location and great tips, but be prepared for limited wifi and long hours during peak season. Still, waking up to kangaroos outside my window made it unforgettable."</p>
+                <p class="reviewer"><strong>Emma L.</strong> • Waitstaff • Flinders Ranges Eco Lodge</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Job Listings Preview -->
+    <section class="jobs-preview" id="jobs">
+        <div class="section-header">
+            <h2>Latest Opportunities</h2>
+            <p>Start your wilderness career journey today</p>
+        </div>
+        <div class="job-list">
+            <div class="job-item">
+                <div class="job-info">
+                    <h4>Hospitality Manager</h4>
+                    <div class="job-meta">
+                        <span>📍 Lord Howe Island, NSW</span>
+                        <span>💰 $65k - $75k + Accommodation</span>
+                        <span>⏰ Full-time</span>
+                    </div>
+                </div>
+                <a href="#" class="apply-btn">VIEW DETAILS</a>
+            </div>
+            <div class="job-item">
+                <div class="job-info">
+                    <h4>Eco-Tourism Guide</h4>
+                    <div class="job-meta">
+                        <span>📍 Great Barrier Reef, QLD</span>
+                        <span>💰 $55k - $62k + Benefits</span>
+                        <span>⏰ Seasonal</span>
+                    </div>
+                </div>
+                <a href="#" class="apply-btn">VIEW DETAILS</a>
+            </div>
+            <div class="job-item">
+                <div class="job-info">
+                    <h4>Executive Chef</h4>
+                    <div class="job-meta">
+                        <span>📍 Margaret River, WA</span>
+                        <span>💰 $70k - $85k + Relocation</span>
+                        <span>⏰ Full-time</span>
+                    </div>
+                </div>
+                <a href="#" class="apply-btn">VIEW DETAILS</a>
+            </div>
+            <div class="job-item">
+                <div class="job-info">
+                    <h4>Guest Services Coordinator</h4>
+                    <div class="job-meta">
+                        <span>📍 Whitsunday Islands, QLD</span>
+                        <span>💰 $52k - $58k + Accommodation</span>
+                        <span>⏰ Contract</span>
+                    </div>
+                </div>
+                <a href="#" class="apply-btn">VIEW DETAILS</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-about">
+                <h3>Wilderness Jobs</h3>
+                <p>Connecting passionate individuals with career opportunities in Australia's most spectacular remote locations. Your adventure starts here.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="#">All Destinations</a></li>
+                    <li><a href="#">Job Listings</a></li>
+                    <li><a href="#">Employer Reviews</a></li>
+                    <li><a href="#">Success Stories</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Visa Information</a></li>
+                    <li><a href="#">Remote Work Guide</a></li>
+                    <li><a href="#">Packing Tips</a></li>
+                    <li><a href="#">FAQs</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Post a Job</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Wilderness Jobs. All rights reserved. Built for adventurers, by adventurers.</p>
+        </div>
+    </footer>
+</body>
+</html>
